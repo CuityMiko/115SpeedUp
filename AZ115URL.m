@@ -24,12 +24,21 @@
 	NSString * retStr = [NSString stringWithContentsOfURL:[NSURL URLWithString:apiURL] encoding:NSUTF8StringEncoding error:nil];
 	NSDictionary * retDict = [retStr JSONValue];
 	NSArray * downloadUrls = [retDict objectForKey:@"DownloadUrl"];
-	self.chinaUnicomString = [[downloadUrls objectAtIndex:0] objectForKey:@"Url"];
-	self.chinaTelecomString =[[downloadUrls objectAtIndex:1] objectForKey:@"Url"]; 
-	self.backupString = [[downloadUrls objectAtIndex:2] objectForKey:@"Url"];
+    
+    for (id obj in downloadUrls) {
+        NSString *urlString = [obj objectForKey:@"Url"];
+        if ([urlString doesContain:@"tel.115.cdn"])
+            self.chinaTelecomString = urlString;
+        else if ([urlString doesContain:@"cnc.115.cdn"])
+            self.chinaTelecomString = urlString;
+        else {
+            self.backupString = urlString;
+        }
+    }
 	self.fileNameString = [retDict objectForKey:@"FileName"];
 	NSLog(@"%@",retDict);
 }
+
 - (void)dealloc
 {
 	[a115URLString release];
