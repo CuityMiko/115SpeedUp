@@ -15,6 +15,7 @@
 	NSString * chinaUnicomString;
 	NSString * chinaTelecomString;
 	NSString * backupString;
+    NSString * unknownString;
 	
 	NSString * fileNameString;
 }
@@ -24,6 +25,7 @@
 @property (nonatomic, copy) NSString *chinaUnicomString;
 @property (nonatomic, copy) NSString *chinaTelecomString;
 @property (nonatomic, copy) NSString *backupString;
+@property (nonatomic, copy) NSString *unknownString;
 
 #pragma mark methods
 - (void)getURLsFrom115ApiWithURL:(NSString*)aurl;

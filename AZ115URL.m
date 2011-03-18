@@ -16,6 +16,8 @@
 @synthesize chinaUnicomString;
 @synthesize chinaTelecomString;
 @synthesize backupString;
+@synthesize unknownString;
+
 #define UeggVersion 1169
 - (void)getURLsFrom115ApiWithURL:(NSString*)aurl{
 	self.a115URLString = aurl;
@@ -27,14 +29,22 @@
     
     for (id obj in downloadUrls) {
         NSString *urlString = [obj objectForKey:@"Url"];
-        if ([urlString doesContain:@"tel.115.cdn"])
+        if ([urlString rangeOfString:@"cnc.115.cdn"].location != NSNotFound
+            || [urlString rangeOfString:@"http://2.hot"].location != NSNotFound) 
+            self.chinaUnicomString = urlString;
+        
+        else if ([urlString rangeOfString:@"tel.115.cdn"].location != NSNotFound
+                 || [urlString rangeOfString:@"http://1.hot"].location != NSNotFound)
             self.chinaTelecomString = urlString;
-        else if ([urlString doesContain:@"cnc.115.cdn"])
-            self.chinaTelecomString = urlString;
-        else {
+        
+        else if ([urlString rangeOfString:@"bak.115.cdn"].location != NSNotFound
+                 || [urlString rangeOfString:@"http://bak"].location != NSNotFound)
             self.backupString = urlString;
-        }
+        
+        else self.unknownString = urlString;
     }
+    
+
 	self.fileNameString = [retDict objectForKey:@"FileName"];
 	NSLog(@"%@",retDict);
 }
