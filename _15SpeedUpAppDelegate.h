@@ -8,42 +8,42 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AZ115URL.h"
-@class AZDownloadManager;
+@class AZDownloadTask;
 @interface _15SpeedUpAppDelegate : NSObject <NSApplicationDelegate,NSTextFieldDelegate> {
-    NSWindow *window;
-	NSTextField * a115urlText;
-	AZ115URL * az115URL;
-	
-	NSButton * chinaUnicomBtn;
-	NSButton * chinaTelecomBtn;
-	NSButton * backupBtn;
-	
-	NSButton * downloadBtn;
-	
-	NSLevelIndicator * progressIndicator;
-	
-	NSInteger progress;
-	
-	AZDownloadManager * downloader;
-	
-	NSMutableArray * taskArray;
+//    NSWindow *window;
+//	NSTextField * a115urlText;
+//	AZ115URL * az115URL;
+//	
+//	NSButton * chinaUnicomBtn;
+//	NSButton * chinaTelecomBtn;
+//	NSButton * backupBtn;
+//	
+//	NSButton * downloadBtn;
+//	
+//	NSLevelIndicator * progressIndicator;
+//	
+//	NSInteger progress;
+//	
+//	AZDownloadTask * downloader;
+//	
+//	NSMutableArray * taskArray;
 }
 
-@property (nonatomic, retain) NSMutableArray *taskArray;
-@property (nonatomic, retain) AZDownloadManager *downloader;
-@property (nonatomic, retain) IBOutlet NSButton *downloadBtn;
-@property (nonatomic, assign) IBOutlet NSInteger progress;
-@property (nonatomic, retain) IBOutlet NSLevelIndicator *progressIndicator;
-@property (nonatomic, retain) IBOutlet NSButton *chinaUnicomBtn;
-@property (nonatomic, retain) IBOutlet NSButton *chinaTelecomBtn;
-@property (nonatomic, retain) IBOutlet NSButton *backupBtn;
-@property (nonatomic, retain) AZ115URL *az115URL;
-@property (nonatomic, retain) IBOutlet NSTextField *a115urlText;
-@property (assign) IBOutlet NSWindow *window;
-- (IBAction)getUrl:(id)sender;
-- (void)updateBtns:(id)sender;
-- (IBAction)download:(id)sender;
-- (IBAction)dataUpdate:(id)sender;
-- (void)disableAllDownload:(id)sender;
-- (void)enableAllDownload:(id)sender;
+//@property (nonatomic, retain) NSMutableArray *taskArray;
+//@property (nonatomic, retain) AZDownloadTask *downloader;
+//@property (nonatomic, retain) IBOutlet NSButton *downloadBtn;
+//@property (nonatomic, assign) IBOutlet NSInteger progress;
+//@property (nonatomic, retain) IBOutlet NSLevelIndicator *progressIndicator;
+//@property (nonatomic, retain) IBOutlet NSButton *chinaUnicomBtn;
+//@property (nonatomic, retain) IBOutlet NSButton *chinaTelecomBtn;
+//@property (nonatomic, retain) IBOutlet NSButton *backupBtn;
+//@property (nonatomic, retain) AZ115URL *az115URL;
+//@property (nonatomic, retain) IBOutlet NSTextField *a115urlText;
+//@property (assign) IBOutlet NSWindow *window;
+//- (IBAction)getUrl:(id)sender;
+//- (void)updateBtns:(id)sender;
+//- (IBAction)download:(id)sender;
+//- (IBAction)dataUpdate:(id)sender;
+//- (void)disableAllDownload:(id)sender;
+//- (void)enableAllDownload:(id)sender;
 @end

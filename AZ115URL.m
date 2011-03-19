@@ -24,29 +24,59 @@
 	NSString * pickcode = [a115URLString lastPathComponent];
 	NSString * apiURL = [NSString stringWithFormat:@"http://u.115.com/?ct=upload_api&ac=get_pick_code_info&pickcode=%@&version=%d",pickcode,UeggVersion];
 	NSString * retStr = [NSString stringWithContentsOfURL:[NSURL URLWithString:apiURL] encoding:NSUTF8StringEncoding error:nil];
+	NSDictionary * newsDic = [NSDictionary dictionaryWithObject:@"获取下载链接中" forKey:@"news"];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadNews" object:nil userInfo:newsDic];
 	NSDictionary * retDict = [retStr JSONValue];
+	
 	NSArray * downloadUrls = [retDict objectForKey:@"DownloadUrl"];
-    
-    for (id obj in downloadUrls) {
-        NSString *urlString = [obj objectForKey:@"Url"];
-        if ([urlString rangeOfString:@"cnc.115.cdn"].location != NSNotFound
-            || [urlString rangeOfString:@"http://2.hot"].location != NSNotFound) 
-            self.chinaUnicomString = urlString;
-        
-        else if ([urlString rangeOfString:@"tel.115.cdn"].location != NSNotFound
-                 || [urlString rangeOfString:@"http://1.hot"].location != NSNotFound)
-            self.chinaTelecomString = urlString;
-        
-        else if ([urlString rangeOfString:@"bak.115.cdn"].location != NSNotFound
-                 || [urlString rangeOfString:@"http://bak"].location != NSNotFound)
-            self.backupString = urlString;
-        
-        else self.unknownString = urlString;
-    }
+	
+	newsDic = [NSDictionary dictionaryWithObject:@"分析链接中" forKey:@"news"];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadNews" object:nil userInfo:newsDic];
+	
+	switch ([downloadUrls count]) {
+		case 0:
+			break;
+		case 1:
+			self.chinaUnicomString = [[downloadUrls objectAtIndex:0] valueForKey:@"Url"];
+			self.chinaTelecomString = @"";
+			self.backupString = @"";
+			break;
+		case 2:
+			self.chinaUnicomString = [[downloadUrls objectAtIndex:0] valueForKey:@"Url"];
+			self.chinaTelecomString = [[downloadUrls objectAtIndex:1] valueForKey:@"Url"];
+			self.backupString = @"";
+			break;
+		case 3:
+			self.chinaUnicomString = [[downloadUrls objectAtIndex:0] valueForKey:@"Url"];
+			self.chinaTelecomString = [[downloadUrls objectAtIndex:1] valueForKey:@"Url"];
+			self.backupString = [[downloadUrls objectAtIndex:2] valueForKey:@"Url"];
+			break;
+		default:
+			break;
+	}
+	
+	
+    //for (id obj in downloadUrls) {
+//        NSString *urlString = [obj objectForKey:@"Url"];
+//        if () 
+//            self.chinaUnicomString = urlString;
+//        
+//        else if ([urlString rangeOfString:@"tel.115.cdn"].location != NSNotFound
+//                 || [urlString rangeOfString:@"http://1.hot"].location != NSNotFound)
+//            self.chinaTelecomString = urlString;
+//        
+//        else if ([urlString rangeOfString:@"bak"].location != NSNotFound
+//                 || [urlString rangeOfString:@"http://bak"].location != NSNotFound)
+//            self.backupString = urlString;
+//        
+//        else self.unknownString = urlString;
+//    }
     
 
 	self.fileNameString = [retDict objectForKey:@"FileName"];
-	NSLog(@"%@",retDict);
+	newsDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%@ 准备下载",self.fileNameString] forKey:@"news"];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadNews" object:nil userInfo:newsDic];
+//	NSLog(@"%@",retDict);
 }
 
 - (void)dealloc
