@@ -92,7 +92,7 @@ static AZDownloadConfig *sharedInstance;
 	
 	NSMutableArray * args = [NSMutableArray arrayWithObjects:@"-n",self.connectionLimit,
 							 @"-U",@"User-Agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)",
-							 @"-s",self.speedLimit,
+							 @"-s",[NSString stringWithFormat:@"%f",self.speedLimit],
 //							 @"-S",url.backupString,
 							 @"-o",[NSString stringWithFormat:@"%@/%@",self.targetPath,url.fileNameString],sourceUrl,nil];
 	return args;
