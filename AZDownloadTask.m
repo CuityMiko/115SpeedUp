@@ -91,7 +91,7 @@
 			}			
 			if (self.curSpeed&&self.curProgress) {
 				if (self.adelegate) {
-					NSLog(@"%@ %@",self.curSpeed,self.curProgress);
+//					NSLog(@"%@ %@",self.curSpeed,self.curProgress);
 					if ([self.adelegate respondsToSelector:@selector(downloadUpdateSpeed:andProgress:)]) {
 						[self.adelegate downloadUpdateSpeed:self.curSpeed andProgress:self.curProgress];
 					}

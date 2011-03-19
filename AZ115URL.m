@@ -76,7 +76,7 @@
 	self.fileNameString = [retDict objectForKey:@"FileName"];
 	newsDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%@ 准备下载",self.fileNameString] forKey:@"news"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadNews" object:nil userInfo:newsDic];
-//	NSLog(@"%@",retDict);
+	NSLog(@"%@",retDict);
 }
 
 - (void)dealloc
