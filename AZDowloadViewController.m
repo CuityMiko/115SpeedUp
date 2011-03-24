@@ -13,6 +13,7 @@
 #import "AZ115URL.h"
 @implementation AZDowloadViewController
 
+@synthesize tableVC;
 @synthesize changePathBtn;
 @synthesize speedLimitTextField;
 @synthesize window;
@@ -46,6 +47,9 @@
 
 	[changePathBtn release];
 	changePathBtn = nil;
+
+	[tableVC release];
+	tableVC = nil;
 
 	[super dealloc];
 }
@@ -98,7 +102,7 @@
 		[theAlert beginSheetModalForWindow:self.window modalDelegate:nil didEndSelector:nil contextInfo:nil];
 		return;
 	}
-	[self disableUIWithString:@"连接中..."];
+	//[self disableUIWithString:@"连接中..."];
 	
 	NSDictionary * newsDic = [NSDictionary dictionaryWithObject:@"开始获取下载链接" forKey:@"news"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadNews" object:nil userInfo:newsDic];
@@ -106,7 +110,10 @@
 	[a115URL getURLsFrom115ApiWithURL:[input115URLTextField stringValue]];
 	AZDownloadTask * aTask = [[[AZDownloadTask alloc] init] autorelease];
 	[aTask performSelector:@selector(taskWith115URL:) withObject:a115URL afterDelay:0.5];
-	[aTask setAdelegate:self];
+//	[aTask setAdelegate:self];
+	
+	[self.tableVC.downloadArray addObject:aTask];
+	[self.tableVC.listTableView reloadData];
 }
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification{
 	[[AZDownloadConfig sharedInstance] setNetwork:[self.networkComboBox indexOfSelectedItem]];

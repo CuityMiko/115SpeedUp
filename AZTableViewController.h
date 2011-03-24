@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AZDownloadTask.h"
 
-
-@interface AZTableViewController : NSObject<NSTableViewDelegate,NSTableViewDataSource> {
+@interface AZTableViewController : NSObject<NSTableViewDelegate,NSTableViewDataSource,AZDownloadTaskDelegate> {
 	NSTableView * listTableView;
 	
 	NSMutableArray * downloadArray;

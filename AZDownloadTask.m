@@ -11,6 +11,7 @@
 #import "AZDownloadConfig.h"
 @implementation AZDownloadTask
 
+@synthesize curIndex;
 @synthesize curTread;
 @synthesize az115URL;
 @synthesize curSpeed;
@@ -48,6 +49,7 @@
 
 	[curTread release];
 	curTread = nil;
+
 
 	[super dealloc];
 }

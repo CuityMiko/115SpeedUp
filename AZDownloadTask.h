@@ -25,8 +25,11 @@
 	AZ115URL * az115URL;
 	
 	NSThread * curTread;
+	
+	NSInteger curIndex;
 }
 
+@property (nonatomic, assign) NSInteger curIndex;
 @property (nonatomic, retain) NSThread *curTread;
 @property (nonatomic, retain) AZ115URL *az115URL;
 @property (nonatomic, copy) NSString *curSpeed;

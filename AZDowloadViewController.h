@@ -10,6 +10,7 @@
 #import <Automator/Automator.h>
 #import "AZWindow.h"
 #import "AZDownloadTask.h"
+#import "AZTableViewController.h"
 @interface AZDowloadViewController : NSObject <NSComboBoxDelegate,AZDownloadTaskDelegate>{
 	IBOutlet	AZWindow * window;
 	IBOutlet	NSLevelIndicator * progressLevelIndicator;
@@ -20,8 +21,10 @@
 	IBOutlet	NSComboBox * networkComboBox;
 	IBOutlet	NSTextField * pathField;
 	IBOutlet	NSTextField * speedLimitTextField;
+	IBOutlet	AZTableViewController * tableVC;
 }
 
+@property (nonatomic, retain) AZTableViewController *tableVC;
 @property (nonatomic, retain) NSButton *changePathBtn;
 @property (nonatomic, retain) NSTextField *speedLimitTextField;
 @property (nonatomic, retain) AZWindow *window;
