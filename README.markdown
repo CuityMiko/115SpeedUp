@@ -9,4 +9,4 @@
 
 1.2更新
 支持多任务
-![1.2](http://ww4.sinaimg.cn/large/683ca33cjw6dfm0rbpci1j.jpg)
+![1.2](http://aladdin-z.com/images/115SpeedUp/1.2.png)
