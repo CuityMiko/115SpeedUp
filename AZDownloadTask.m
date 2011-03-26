@@ -80,6 +80,15 @@
 			for (NSString * info in infos){
 				NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 				if ([info length]>12) {
+					NSRange r1 = [info rangeOfString:@"[100%]"];
+					NSRange r2 = [info rangeOfString:@"Downloaded"];
+					NSRange r3 = [info rangeOfString:@"seconds"];
+					if (r1.length>0||r2.length>0||r3.length>0) {
+						self.curProgress = [NSString stringWithFormat:@"%f",100.0];
+						self.curSpeed = @"完成";
+						[aTask terminate];
+						break;
+					}
 					NSString * prefixStr = [info substringToIndex:6];
 					if ([prefixStr hasPrefix:@"["]&&[prefixStr hasSuffix:@"]"]) {
 						self.curProgress = [prefixStr substringWithRange:NSMakeRange(1, 3)];
@@ -99,9 +108,19 @@
 					}
 				}
 			}
-			if ([self.curProgress intValue] == 100) {
+			if ([self.curProgress intValue] >= 100) {
+				self.curProgress = [NSString stringWithFormat:@"%f",100.0];
+				self.curSpeed = @"完成";
 				[aTask terminate];
 				break;
+			}
+		}
+	}
+	if (self.curSpeed&&self.curProgress) {
+		if (self.adelegate) {
+			//					NSLog(@"%@ %@",self.curSpeed,self.curProgress);
+			if ([self.adelegate respondsToSelector:@selector(downloadUpdateSpeed:andProgress:)]) {
+				[self.adelegate downloadUpdateSpeed:self.curSpeed andProgress:self.curProgress];
 			}
 		}
 	}

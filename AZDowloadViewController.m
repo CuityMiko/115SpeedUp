@@ -103,7 +103,6 @@
 		return;
 	}
 	//[self disableUIWithString:@"连接中..."];
-	
 	NSDictionary * newsDic = [NSDictionary dictionaryWithObject:@"开始获取下载链接" forKey:@"news"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadNews" object:nil userInfo:newsDic];
 	AZ115URL * a115URL = [[[AZ115URL alloc] init] autorelease];
@@ -114,6 +113,7 @@
 	
 	[self.tableVC.downloadArray addObject:aTask];
 	[self.tableVC.listTableView reloadData];
+	[self.input115URLTextField setStringValue:@""];
 }
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification{
 	[[AZDownloadConfig sharedInstance] setNetwork:[self.networkComboBox indexOfSelectedItem]];
