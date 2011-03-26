@@ -5,3 +5,8 @@
 	
 2.关于115SpeedUp
 	通过抓包，得到优蛋的客户端的协议，直接调用该API，配合axel进行简单的分段加速下载。
+
+
+1.2更新
+支持多任务
+![1.2](http://ww4.sinaimg.cn/large/683ca33cjw6dfm0rbpci1j.jpg)
