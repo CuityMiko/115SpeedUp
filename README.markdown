@@ -9,4 +9,6 @@
 
 1.2更新
 支持多任务
-![1.2](http://aladdin-z.com/images/115SpeedUp/1.2.png)
+## Screenshots ##
+
+![](http://aladdin-z.com/images/115SpeedUp/1.2.png)
