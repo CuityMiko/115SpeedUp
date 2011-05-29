@@ -17,12 +17,13 @@
 @synthesize chinaTelecomString;
 @synthesize backupString;
 @synthesize unknownString;
-
-#define UeggVersion 1169
+@synthesize urlCounts;
+#define UeggVersion 1172
 - (void)getURLsFrom115ApiWithURL:(NSString*)aurl{
 	self.a115URLString = aurl;
-	NSString * pickcode = [a115URLString lastPathComponent];
-	NSString * apiURL = [NSString stringWithFormat:@"http://u.115.com/?ct=upload_api&ac=get_pick_code_info&pickcode=%@&version=%d",pickcode,UeggVersion];
+	NSString * pickcode = [a115URLString lastPathComponent];              
+
+	NSString * apiURL = [NSString stringWithFormat:@"http://uapi.115.com/?ct=upload_api&ac=get_pick_code_info&pickcode=%@&version=%d",pickcode,UeggVersion];
 	NSString * retStr = [NSString stringWithContentsOfURL:[NSURL URLWithString:apiURL] encoding:NSUTF8StringEncoding error:nil];
 	NSDictionary * newsDic = [NSDictionary dictionaryWithObject:@"获取下载链接中" forKey:@"news"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadNews" object:nil userInfo:newsDic];
@@ -32,8 +33,8 @@
 	
 	newsDic = [NSDictionary dictionaryWithObject:@"分析链接中" forKey:@"news"];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadNews" object:nil userInfo:newsDic];
-	
-	switch ([downloadUrls count]) {
+	self.urlCounts = [downloadUrls count];
+	switch (self.urlCounts) {
 		case 0:
 			break;
 		case 1:

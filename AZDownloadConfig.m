@@ -76,20 +76,44 @@ static AZDownloadConfig *sharedInstance;
 }
 - (NSMutableArray *)argsForAxelFor115URL:(AZ115URL*)url{
 	NSString * sourceUrl;
-	switch (self.network) {
-		case kNetWorkChinaUnicom:
-			sourceUrl = url.chinaUnicomString;
+//    if(url.urlCounts==3){
+//        switch (self.network) {
+//            case kNetWorkChinaUnicom:
+//                sourceUrl = url.chinaUnicomString;
+//                break;
+//            case kNetWorkChinaTelecom:
+//                sourceUrl = url.chinaTelecomString;
+//                break;
+//            case kNetWorkBackup:
+//                sourceUrl = url.backupString;
+//                break;
+//            default:
+//                break;
+//        }
+//    }else{
+//        if (url.chinaUnicomString) {
+//            <#statements#>
+//        }        
+//    }
+    
+    switch (url.urlCounts) {
+		case 0:
 			break;
-		case kNetWorkChinaTelecom:
+		case 1:
 			sourceUrl = url.chinaTelecomString;
 			break;
-		case kNetWorkBackup:
-			sourceUrl = url.backupString;
+		case 2:
+			sourceUrl = url.chinaUnicomString;
+			break;
+		case 3:
+			sourceUrl =  url.chinaUnicomString;
+//			self.chinaTelecomString = [[downloadUrls objectAtIndex:0] valueForKey:@"Url"];
+//			self.backupString = [[downloadUrls objectAtIndex:2] valueForKey:@"Url"];
 			break;
 		default:
 			break;
 	}
-	
+
 	NSMutableArray * args = [NSMutableArray arrayWithObjects:@"-n",self.connectionLimit,
 							 @"-U",@"User-Agent:Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)",
 							 @"-s",[NSString stringWithFormat:@"%f",self.speedLimit],

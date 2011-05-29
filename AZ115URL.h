@@ -18,8 +18,11 @@
     NSString * unknownString;
 	
 	NSString * fileNameString;
+    
+    NSUInteger urlCounts;
 }
 
+@property (nonatomic, assign) NSUInteger urlCounts;
 @property (nonatomic, copy) NSString *fileNameString;
 @property (nonatomic, copy) NSString *a115URLString;
 @property (nonatomic, copy) NSString *chinaUnicomString;
