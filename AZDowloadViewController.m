@@ -66,7 +66,7 @@
 	[self.window setTitle: [[n userInfo] objectForKey:@"news"]];
 }
 - (BOOL)check115URL{
-	if(![[self.input115URLTextField stringValue] hasPrefix:@"http://u.115.com/file/"]){
+	if(![[self.input115URLTextField stringValue] hasPrefix:@"http://115.com/file/"]){
 		return NO;
 	}
 	return YES;

@@ -18,7 +18,7 @@
 @synthesize backupString;
 @synthesize unknownString;
 @synthesize urlCounts;
-#define UeggVersion 1172
+#define UeggVersion 1176
 - (void)getURLsFrom115ApiWithURL:(NSString*)aurl{
 	self.a115URLString = aurl;
 	NSString * pickcode = [a115URLString lastPathComponent];              

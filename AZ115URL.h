@@ -20,6 +20,8 @@
 	NSString * fileNameString;
     
     NSUInteger urlCounts;
+    
+//    NSString * 
 }
 
 @property (nonatomic, assign) NSUInteger urlCounts;
